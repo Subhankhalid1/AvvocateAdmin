@@ -26,9 +26,11 @@ const Login = () => {
   const { setAuth } = useContext(GlobalContext);
 
   const loginFunc = (e) => {
+    let url='https://www.myavvocatoappadmin.com/'
+    //let url="https://avvocate.herokuapp.com/"
     e.preventDefault();
     setLoading(true);
-    fetch('http://147.182.142.76:5000/api/login', {
+    fetch(`${url}api/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

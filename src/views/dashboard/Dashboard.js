@@ -42,20 +42,25 @@ const Dashboard = () => {
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
   let socket;
-  let ENDPOINT = "http://localhost:5000/";
-  // let ENDPOINT="https://pure-island-16777.herokuapp.com/";
+
+  //digital oceans server endpoint where we deployed the nodejs app
+  //http://147.182.142.76:5000/
+  // let ENDPOINT = "http://localhost:5000/";
+  let ENDPOINT="https://avvocate.herokuapp.com/";
+
+  let url="https://www.myavvocatoappadmin.com/"
 
   useEffect(() => {
     getAllUser();
   }, [])
 
   useEffect(() => {
-    socket = io(ENDPOINT);
+    socket = io('https://avvocateheroku.herokuapp.com/');
     socket.emit("join", auth?.user?._id);
   }, [])
 
   const getAllUser = () => {
-    fetch('http://147.182.142.76:5000/api/getUsers',
+    fetch(`${url}api/getUsers`,
       { method: 'GET' },
     )
       .then(res => res.json())
@@ -154,7 +159,7 @@ const Dashboard = () => {
             detail?.isBan ?
               <CButton color="primary"
                 onClick={() => {
-                  fetch('http://147.182.142.76:5000/api/userUnban', {
+                  fetch(`${url}api/userUnban`, {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json'
@@ -176,7 +181,7 @@ const Dashboard = () => {
               >UnBan</CButton>
               :
               <CButton color="primary" onClick={() => {
-                fetch('http://147.182.142.76:5000/api/userBan', {
+                fetch(`${url}api/userBan`, {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json'

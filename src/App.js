@@ -25,7 +25,7 @@ const App = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      fetch('http://147.182.142.76:5000/api/refresh', {
+      fetch('https://www.myavvocatoappadmin.com/api/refresh', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

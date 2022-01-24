@@ -5,13 +5,14 @@ import { GlobalContext } from "../../../context";
 
 const InboxFooter = ({ activeChatUser }) => {
     let socket;
-    let ENDPOINT = "http://localhost:5000/";
+   //  let url = "http://localhost:5000/";
+   let url="https://avvocateheroku.herokuapp.com/"
 
     const [text, setText] = useState("");
     const { auth, chat, setChat, allMessages, setAllMessages } = useContext(GlobalContext);
 
     useEffect(() => {
-        socket = io(ENDPOINT);
+        socket = io(url);
         socket.emit("join", auth?.user?._id);
 
         socket.on('message', msg => {
@@ -26,7 +27,7 @@ const InboxFooter = ({ activeChatUser }) => {
 
     const sendMessage = async ({ keyCode }) => {
         if (keyCode === 13) {
-            socket = io(ENDPOINT);
+            socket = io(url);
             setText("");
             let msgData = { sender: auth?.user?._id, receiver: activeChatUser && activeChatUser._id,
                  message: text };

@@ -7,13 +7,15 @@ import moment from 'moment';
 const Recipient = () => {
     const [users, setUsers] = useState([]);
     const { auth, setChat, setActiveChatUser, setLoading, allMessages, setAllMessages } = useContext(GlobalContext);
-
+     let url="https://avvocateheroku.herokuapp.com/"
+    //let url="http://localhost:5000/"
+  //  let url='https://www.myavvocatoappadmin.com/'
     useEffect(() => {
         getAllUser();
     }, []);
 
     const getAllUser = () => {
-        fetch('http://147.182.142.76:5000/api/getUsers',
+        fetch(`https://www.myavvocatoappadmin.com/api/getUsers`,
             { method: 'GET' },
         )
             .then(res => res.json())
@@ -40,7 +42,7 @@ const Recipient = () => {
     }, [])
 
     const getAllMessages = async () => {
-        const _messages = await axios.get('http://localhost:5000/api/messages/all');
+        const _messages = await axios.get(`${url}api/messages/all`);
         if (_messages) {
             setAllMessages(_messages.data);
         }
