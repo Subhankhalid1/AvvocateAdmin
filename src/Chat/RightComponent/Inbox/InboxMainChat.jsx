@@ -5,12 +5,11 @@ import { GlobalContext } from "../../../context";
 
 const InboxMainChat = ({ chat, auth }) => {
     const { loading, allMessages, activeChatUser } = useContext(GlobalContext);
-
     useEffect(() => {
         var objDiv = document.getElementById("chatBG");
         objDiv.scrollTop = objDiv.scrollHeight;
     }, [])
-
+ 
     let _filterMessages = allMessages && allMessages?.filter(item => {
         if (item.sender === activeChatUser?._id || item.receiver === activeChatUser?._id) {
             return item;
@@ -20,6 +19,7 @@ const InboxMainChat = ({ chat, auth }) => {
     const messageFocus = (id) => {
         console.log(id);
     }
+
 
     return <React.Fragment>
         {loading ? <div style={{ textAlign: 'center' }}><CSpinner /></div>
